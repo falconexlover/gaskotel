@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Завод сегодня">
+  <defs>
+    <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#dbeafe"/>
+      <stop offset="1" stop-color="#bfdbfe"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <rect x="60" y="380" width="1080" height="260" rx="8" fill="#1d4ed8" fill-opacity="0.08" stroke="#1d4ed8"/>
+  <rect x="120" y="320" width="760" height="200" rx="6" fill="#111827" fill-opacity="0.06" stroke="#374151"/>
+  <text x="600" y="120" text-anchor="middle" font-family="system-ui, sans-serif" font-size="48" fill="#0f172a">Завод сегодня</text>
+  <text x="600" y="700" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" fill="#1f2937">Поставьте сюда реальное фото корпусов завода</text>
+</svg>
+

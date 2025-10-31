@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  slug        String    @unique
+  name        String
+  description String?
+  products    Product[]
+}
+
+model Series {
+  id          Int       @id @default(autoincrement())
+  slug        String    @unique
+  name        String
+  description String?
+  products    Product[]
+}
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  slug        String    @unique
+  name        String
+  description String?
+  price       Int?
+  isPromo     Boolean   @default(false)
+  images      Image[]
+  documents   Document[]
+  attributes  AttributeValue[]
+  categoryId  Int
+  category    Category  @relation(fields: [categoryId], references: [id])
+  seriesId    Int?
+  series      Series?   @relation(fields: [seriesId], references: [id])
+}
+
+model Image {
+  id        Int     @id @default(autoincrement())
+  url       String
+  alt       String?
+  productId Int
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model Document {
+  id        Int     @id @default(autoincrement())
+  title     String
+  url       String
+  type      String
+  productId Int
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model Attribute {
+  id    Int     @id @default(autoincrement())
+  code  String  @unique
+  name  String
+  unit  String?
+  type  String
+  values AttributeValue[]
+}
+
+model AttributeValue {
+  id          Int       @id @default(autoincrement())
+  productId   Int
+  attributeId Int
+  valueString String?
+  valueNumber Float?
+  valueBool   Boolean?
+  product     Product   @relation(fields: [productId], references: [id])
+  attribute   Attribute @relation(fields: [attributeId], references: [id])
+}
+
+model ServiceCenter {
+  id      Int    @id @default(autoincrement())
+  extId   String @unique
+  name    String
+  city    String
+  address String
+  lat     Float
+  lng     Float
+  phone   String
+  services String
+}
+
+model News {
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique
+  title     String
+  date      DateTime
+  isPromo   Boolean  @default(false)
+}

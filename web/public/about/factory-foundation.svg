@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" aria-label="Участок завода, 1939">
+  <rect width="1200" height="800" fill="#eef2ff"/>
+  <g stroke="#4b5563" fill="#9ca3af" fill-opacity="0.25">
+    <rect x="100" y="460" width="1000" height="200"/>
+    <line x1="120" y1="200" x2="120" y2="700" stroke="#6b7280" stroke-width="6"/>
+    <line x1="280" y1="220" x2="280" y2="700" stroke="#6b7280" stroke-width="6"/>
+    <line x1="440" y1="240" x2="440" y2="700" stroke="#6b7280" stroke-width="6"/>
+  </g>
+  <text x="600" y="120" text-anchor="middle" font-family="system-ui, sans-serif" font-size="42" fill="#1f2937">Начало строительства, 1939</text>
+  <text x="600" y="700" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" fill="#334155">Замените на фото периметра и мастерских</text>
+</svg>
+
