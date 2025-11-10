@@ -39,6 +39,13 @@ async function main() {
     { slug: 'tovary-dlya-otdyha', name: 'Товары для отдыха' },
     { slug: 'polotencесushiteli', name: 'Полотенцесушители' },
     { slug: 'tovary-dlya-avtomobilista', name: 'Товары для автомобилиста' },
+    // Категории из src/data/products.ts
+    { slug: 'gazovye-kotly', name: 'Газовые котлы' },
+    { slug: 'pribory-ucheta', name: 'Приборы учета' },
+    { slug: 'avtomatika', name: 'Автоматика' },
+    { slug: 'bak-teploobmennik', name: 'Бак-теплообменник' },
+    { slug: 'plity', name: 'Плиты' },
+    { slug: 'aksessuary', name: 'Аксессуары' },
   ];
   const catMap = {};
   for (const c of cats) {

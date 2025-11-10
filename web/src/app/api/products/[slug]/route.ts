@@ -1,6 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 export async function GET(_: Request, { params }: { params: { slug: string } }) {
   const item = await prisma.product.findUnique({

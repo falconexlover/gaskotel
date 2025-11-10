@@ -1,5 +1,5 @@
 export const site = {
-  name: "Газкотел",
+  name: "Жуковский Машиностроительный Завод ЖМЗ",
   url: "https://gaskotel.ru",
   contacts: {
     phoneDisplay: "+7 (495) 221-66-88",
@@ -21,4 +21,3 @@ export const site = {
 } as const;
 
 export type SiteConfig = typeof site;
-

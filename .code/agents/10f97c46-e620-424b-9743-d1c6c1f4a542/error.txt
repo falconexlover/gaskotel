@@ -1,0 +1,3 @@
+Command failed: YOLO mode is enabled. All tool calls will be automatically approved.
+Loaded cached credentials.
+This account requires setting the GOOGLE_CLOUD_PROJECT or GOOGLE_CLOUD_PROJECT_ID env var. See https://goo.gle/gemini-cli-auth-docs#workspace-gca

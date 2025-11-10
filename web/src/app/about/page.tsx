@@ -125,7 +125,7 @@ function HistoryItem({ year, children, image, caption }: { year: string; childre
             <figure className="mt-3">
               <Image src={image} alt={caption ?? "Историческое фото"} width={800} height={500} className="h-auto w-full rounded-lg border border-zinc-200 dark:border-zinc-800" />
               {caption && (
-                <figcaption className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{caption}</figcaption>
+                <figcaption className="mt-2 text-sm text-zinc-700 dark:text-zinc-400">{caption}</figcaption>
               )}
             </figure>
           )}
@@ -139,7 +139,7 @@ function Figure({ src, alt, caption }: { src: string; alt: string; caption: stri
   return (
     <figure className="rounded-xl border border-zinc-200 bg-white p-3 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60">
       <Image src={src} alt={alt} width={1200} height={800} className="h-auto w-full rounded-lg" />
-      <figcaption className="mt-2 text-center text-sm text-zinc-600 dark:text-zinc-400">{caption}</figcaption>
+      <figcaption className="mt-2 text-center text-sm text-zinc-700 dark:text-zinc-400">{caption}</figcaption>
     </figure>
   );
 }

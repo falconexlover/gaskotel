@@ -17,7 +17,7 @@ export function DocsTiles() {
             <div className="flex items-start justify-between gap-3">
               <div>
                 <div className="font-medium text-zinc-900 dark:text-zinc-100">{t.title}</div>
-                <div className="text-sm text-zinc-600 dark:text-zinc-400">{t.desc}</div>
+                <div className="text-sm text-zinc-700 dark:text-zinc-400">{t.desc}</div>
               </div>
               <span aria-hidden className="text-zinc-400 transition-transform duration-200 group-hover:translate-x-0.5">→</span>
             </div>

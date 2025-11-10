@@ -1,0 +1,171 @@
+/* Критические стили для хедера - должны быть вlined в HTML */
+
+/* Стили для верхней панели с контактами */
+.top-panel {
+  background-color: #1a365d; /* gaskotel-primary */
+  color: white;
+  padding: 0.5rem 0;
+}
+
+.top-panel .contact-info,
+.top-panel .language-switcher {
+  font-size: 0.875rem;
+}
+
+/* Стили для основного контейнера хедера */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem; /* 64px */
+}
+
+/* Стили для логотипа и названия */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(90deg, #2b77e6 0%, #00d4aa 100%);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+}
+
+.logo-badge-text {
+  position: relative;
+  font-size: 1.875rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.company-name {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.company-name-small {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  color: rgba(26, 54, 93, 0.8);
+}
+
+.company-description {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+/* Стили для поиска */
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 24rem;
+  margin: 0 2rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.search-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+
+/* Стили для иконок действий */
+.action-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  background-color: #2b77e6;
+  color: white;
+  border-radius: 50%;
+  width: 1.25rem;
+  height: 1.25rem;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Стили для основной навигации */
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  color: #374151;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #2b77e6;
+}
+
+/* Стили для мобильного меню */
+.mobile-menu-button {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    display: flex;
+  }
+  
+  .search-container {
+    max-width: 100%;
+    margin: 0 1rem;
+  }
+  
+  .main-nav {
+    display: none;
+  }
+}

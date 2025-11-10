@@ -106,7 +106,7 @@ export default function CareersPage() {
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <div className="font-medium">{v.title}</div>
-                  <div className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Жуковский, полный день</div>
+                  <div className="mt-1 text-sm text-zinc-700 dark:text-zinc-400">Жуковский, полный день</div>
                 </div>
                 <div className="shrink-0 rounded-md bg-[var(--primary-50)] px-2 py-1 text-sm text-[var(--primary-800)] dark:bg-zinc-800/60 dark:text-[var(--primary-300)]">{v.salary}</div>
               </div>

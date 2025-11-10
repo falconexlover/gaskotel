@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 
 export function SubscribeForm() {
   const [email, setEmail] = useState("");
@@ -42,42 +43,46 @@ export function SubscribeForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-3" noValidate>
-      <div className="flex gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row">
         <input
           type="email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Ваш email"
-          className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-500 outline-none ring-[var(--primary-700)] focus:ring-2 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+          className="w-full rounded-xl border border-[var(--border-soft)] bg-white/85 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-500 shadow-sm transition-colors focus:border-[var(--border-strong)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-100)] dark:bg-[var(--surface-base)] dark:text-zinc-100"
           aria-label="Email для подписки"
         />
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          className="shrink-0 rounded-md bg-[var(--primary-700)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--primary-800)] disabled:opacity-60 dark:bg-[var(--primary-400)] dark:hover:bg-[var(--primary-300)] dark:text-zinc-900"
-        >
-          {status === "loading" ? "Отправка…" : "Подписаться"}
-        </button>
+        <Button type="submit" size="md" loading={status === "loading"} className="w-full shrink-0 sm:w-auto">
+          {status === "loading" ? "Отправляем…" : "Подписаться"}
+        </Button>
       </div>
-      <label className="flex items-start gap-2 text-xs text-zinc-600 dark:text-zinc-400">
+      <label className="flex items-start gap-2 text-xs text-zinc-700 dark:text-zinc-300">
         <input
           type="checkbox"
           checked={agree}
           onChange={(e) => setAgree(e.target.checked)}
-          className="mt-0.5"
+          className="mt-0.5 accent-[var(--primary-600)]"
         />
         <span>
           Я соглашаюсь с обработкой персональных данных и принимаю
           {" "}
-          <Link href="/legal/privacy-policy" className="text-[var(--primary-700)] underline underline-offset-2 dark:text-[var(--primary-300)]">Политику конфиденциальности</Link>.
+          <Link href="/legal/privacy-policy" className="text-[var(--primary-700)] underline underline-offset-2 dark:text-[var(--primary-200)]">Политику конфиденциальности</Link>.
         </span>
       </label>
-      <div aria-live="polite" className="text-xs text-zinc-600 dark:text-zinc-400 min-h-[1.25rem]">
+      <div
+        aria-live="polite"
+        className={`min-h-[1.25rem] text-xs ${
+          status === "success"
+            ? "text-emerald-600 dark:text-emerald-300"
+            : status === "error"
+              ? "text-red-600 dark:text-red-400"
+              : "text-zinc-700 dark:text-zinc-400"
+        }`}
+      >
         {message}
       </div>
     </form>
   );
 }
-
 

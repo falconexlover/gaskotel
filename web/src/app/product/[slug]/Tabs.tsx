@@ -29,7 +29,7 @@ export function Tabs({
         <dl className="mt-4 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-2">
           {Object.entries(characteristics).map(([k, v]) => (
             <div key={k} className="flex justify-between gap-3">
-              <dt className="text-zinc-500 dark:text-zinc-400">{k}</dt>
+              <dt className="text-zinc-600 dark:text-zinc-400">{k}</dt>
               <dd className="text-zinc-900 dark:text-zinc-100">{v}</dd>
             </div>
           ))}

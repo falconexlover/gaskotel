@@ -1,9 +1,21 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { CategoriesList } from "@/components/home/CategoriesList";
-import { PrismaClient } from "@prisma/client";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { prisma } from "@/lib/prisma";
+import { site } from "@/config/site";
 
-const prisma = new PrismaClient();
+export const metadata: Metadata = {
+  title: "Каталог продукции",
+  description: `Каталог отопительного оборудования ${site.name}. Газовые котлы, твердотопливные котлы, приборы учета и аксессуары.`,
+  openGraph: {
+    title: "Каталог продукции",
+    description: `Каталог отопительного оборудования ${site.name}`,
+    type: "website",
+    url: `${site.url}/catalog`,
+  },
+};
 
 export default async function CatalogPage() {
   const categories = await prisma.category.findMany({ include: { _count: { select: { products: true } } } });
@@ -30,8 +42,11 @@ export default async function CatalogPage() {
       <div className="grid gap-6 md:grid-cols-3">
         <div className="md:col-span-2 grid gap-6 sm:grid-cols-2">
           {filtered.length === 0 && (
-            <div className="sm:col-span-2 rounded-xl border border-dashed border-zinc-300 bg-white p-6 text-sm text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900/60 dark:text-zinc-400">
-              Категории пока не добавлены.
+            <div className="sm:col-span-2">
+              <EmptyState
+                title="Категории пока не добавлены"
+                description="Мы работаем над наполнением каталога. Свяжитесь с нами для получения информации о продукции."
+              />
             </div>
           )}
           {filtered.map((c: any) => (

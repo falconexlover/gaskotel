@@ -16,17 +16,20 @@ export function ThemeToggle() {
     const root = document.documentElement;
     if (dark) {
       root.classList.add("dark");
+      root.classList.remove("light");
       try { localStorage.setItem("theme", "dark"); } catch {}
     } else {
       root.classList.remove("dark");
+      root.classList.add("light");
       try { localStorage.setItem("theme", "light"); } catch {}
     }
   }, [dark]);
 
   return (
     <button
+      type="button"
       onClick={() => setDark((v) => !v)}
-      className="inline-flex h-9 items-center justify-center rounded-md border border-zinc-300 px-3 text-sm transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:hover:bg-zinc-800/60"
+      className="inline-flex h-9 items-center justify-center rounded-lg border border-[var(--border-soft)] bg-white/70 px-3 text-sm font-medium text-zinc-700 shadow-sm transition-colors hover:border-[var(--border-strong)] hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-100)] dark:bg-[var(--surface-muted)] dark:text-[var(--primary-100)]"
       aria-label="Переключить тему"
       aria-pressed={dark}
     >
@@ -34,5 +37,3 @@ export function ThemeToggle() {
     </button>
   );
 }
-
-

@@ -1,0 +1,72 @@
+[2025-11-10T07:36:00] OpenAI Codex v0.0.0 (research preview)
+--------
+workdir: /Users/falconexlover/.code/working/gaskotel/branches/code-code-gpt-5-codex-branch
+model: gpt-5-codex
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: low
+reasoning summaries: auto
+--------
+[2025-11-10T07:36:00] User instructions:
+Обновить UX главной страницы Next.js приложения в директории web.
+
+Контекст:
+- Репозиторий: /Users/falconexlover/РАБОТА/gaskotel
+- Активное приложение: web/ (Next.js 16, App Router, Tailwind 4, Prisma + SQLite, данные заполняются через prisma/seed.cjs).
+- Главная страница: web/src/app/page.tsx. Она рендерит Hero, популярные категории (статический список), Quiz, SeriesBlock, Trust, рекомендованные товары, документы/партнёров/формы, новости, SEO текст и CTA.
+- Данные категорий и товаров приходят из Prisma (см. web/prisma/schema.prisma, web/prisma/seed.cjs). Сейчас seed проставляет isPromo=true почти всем товарам, поэтому блок "Рекомендуемые товары" часто пустой.
+- Компоненты находятся в web/src/components (ProductCard, CategoryCard, home/* и т.д.).
+- UI уже достаточно светлый, есть классы bg-grid/bg-radial-soft и т.д., тёмная тема поддерживается.
+
+Задача:
+1. Сделать секцию "Популярные категории" динамической: загрузить несколько наиболее "живых" категорий из Prisma (например, по количеству товаров) и показывать счётчик. Если категорий мало, graceful fallback.
+2. Улучшить Quiz блок: добавить индикатор шагов/прогресса, подсказку "5 вопросов", чёткое CTA "Получить подбор", и адаптивную верстку (удобно на мобильном).
+3. Перестроить блоки доверия/статистики/партнёров: разбить длинную колонну на более логичный порядок (например, после Hero поставить StatsStrip, затем Trust с упоминаниями ключевых метрик, потом Partners). Добавить sticky CTA (или заметный callout) "Нужна консультация" с телефоном/кнопкой открытия формы LeadForm.
+4. Исправить блок "Рекомендуемые товары": если из базы нет isPromo=false, автоматически подбирать 3 товара с isPromo=true, иначе fallback отображает skeleton карточки. Добавить подпись с датой обновления (можно показать "Обновлено сегодня" — текущая дата через new Date().toLocaleDateString("ru-RU")) и кнопку "Весь каталог".
+5. Блок "Новости и акции": у NewsPromo/NewsList добавить явный вывод дат и бейдж "Акция"/"Новость". Добавить CTA "Все новости".
+6. Общий UX: обеспечить согласованное расположение CTA (кнопки, ссылки), добавить short description для DocsTiles/LeadForm, следить за адаптивом.
+7. Прогнать необходимые тесты/линтеры (tailwind/Next) или хотя бы `npm run lint` dry-run, убедиться что страница рендерится, и описать любые ограничения.
+
+От вас нужны код-изменения, которые выполняют эти UX улучшения (можно модифицировать компоненты и серверный код страницы). Не забудьте обновить соответствующие компоненты и стили. Если требуется, добавьте новые вспомогательные компоненты. Не трогайте несвязанные части.
+
+[2025-11-10T07:36:00] OpenAI Codex v0.0.0 (research preview)
+--------
+workdir: /Users/falconexlover/.code/working/gaskotel/branches/code-code-gpt-5-codex-branch
+model: gpt-5-codex
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: low
+reasoning summaries: auto
+--------
+[2025-11-10T07:36:00] User instructions:
+Обновить UX главной страницы Next.js приложения в директории web.
+
+Контекст:
+- Репозиторий: /Users/falconexlover/РАБОТА/gaskotel
+- Активное приложение: web/ (Next.js 16, App Router, Tailwind 4, Prisma + SQLite, данные заполняются через prisma/seed.cjs).
+- Главная страница: web/src/app/page.tsx. Она рендерит Hero, популярные категории (статический список), Quiz, SeriesBlock, Trust, рекомендованные товары, документы/партнёров/формы, новости, SEO текст и CTA.
+- Данные категорий и товаров приходят из Prisma (см. web/prisma/schema.prisma, web/prisma/seed.cjs). Сейчас seed проставляет isPromo=true почти всем товарам, поэтому блок "Рекомендуемые товары" часто пустой.
+- Компоненты находятся в web/src/components (ProductCard, CategoryCard, home/* и т.д.).
+- UI уже достаточно светлый, есть классы bg-grid/bg-radial-soft и т.д., тёмная тема поддерживается.
+
+Задача:
+1. Сделать секцию "Популярные категории" динамической: загрузить несколько наиболее "живых" категорий из Prisma (например, по количеству товаров) и показывать счётчик. Если категорий мало, graceful fallback.
+2. Улучшить Quiz блок: добавить индикатор шагов/прогресса, подсказку "5 вопросов", чёткое CTA "Получить подбор", и адаптивную верстку (удобно на мобильном).
+3. Перестроить блоки доверия/статистики/партнёров: разбить длинную колонну на более логичный порядок (например, после Hero поставить StatsStrip, затем Trust с упоминаниями ключевых метрик, потом Partners). Добавить sticky CTA (или заметный callout) "Нужна консультация" с телефоном/кнопкой открытия формы LeadForm.
+4. Исправить блок "Рекомендуемые товары": если из базы нет isPromo=false, автоматически подбирать 3 товара с isPromo=true, иначе fallback отображает skeleton карточки. Добавить подпись с датой обновления (можно показать "Обновлено сегодня" — текущая дата через new Date().toLocaleDateString("ru-RU")) и кнопку "Весь каталог".
+5. Блок "Новости и акции": у NewsPromo/NewsList добавить явный вывод дат и бейдж "Акция"/"Новость". Добавить CTA "Все новости".
+6. Общий UX: обеспечить согласованное расположение CTA (кнопки, ссылки), добавить short description для DocsTiles/LeadForm, следить за адаптивом.
+7. Прогнать необходимые тесты/линтеры (tailwind/Next) или хотя бы `npm run lint` dry-run, убедиться что страница рендерится, и описать любые ограничения.
+
+От вас нужны код-изменения, которые выполняют эти UX улучшения (можно модифицировать компоненты и серверный код страницы). Не забудьте обновить соответствующие компоненты и стили. Если требуется, добавьте новые вспомогательные компоненты. Не трогайте несвязанные части.
+
+
+[2025-11-10T07:36:03] thinking
+
+**Noting read-only environment limitation**
+[2025-11-10T07:36:03] codex
+
+I can’t make the requested UX changes because the environment is currently read-only (`sandbox_mode` is set to `read-only` with `approval_policy: never`). I can inspect files or suggest edits, but I can’t modify anything directly. Please provide write access (e.g., switch to `workspace-write`) so I can proceed.
+[2025-11-10T07:36:04] tokens used: 6 118

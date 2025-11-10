@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f5f7ff;
   --foreground: #0f172a; /* slate-900 for higher contrast */
   /* brand palette */
   --primary-50: #eff6ff;
@@ -17,7 +17,14 @@
   --accent-100: #fee2e2;
   --accent-600: #dc2626;
   --accent-700: #b91c1c;
-  --muted: #334155; /* slate-700 */
+  --muted: #344054; /* slate-700 */
+  --surface-base: rgba(255, 255, 255, 0.98);
+  --surface-muted: rgba(239, 246, 255, 0.92);
+  --surface-glass: rgba(255, 255, 255, 0.88);
+  --border-soft: rgba(148, 163, 184, 0.3);
+  --border-strong: rgba(59, 130, 246, 0.45);
+  --text-muted: #344054;
+  --heading: #0b1120;
   color-scheme: light;
 }
 
@@ -53,26 +60,51 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
+  :root:not(.light) {
+    --background: #101a34;
     --foreground: #e5e7eb; /* zinc-200 */
+    --surface-base: rgba(23, 37, 84, 0.88);
+    --surface-muted: rgba(30, 41, 82, 0.72);
+    --surface-glass: rgba(17, 24, 39, 0.65);
+    --border-soft: rgba(129, 140, 248, 0.28);
+    --border-strong: rgba(96, 165, 250, 0.45);
+    --text-muted: #cbd5f5;
+    --heading: #f1f5ff;
   }
 }
 
 /* Explicit dark mode override via .dark class (JS toggle) */
 .dark {
-  --background: #0a0a0a;
+  --background: #101a34;
   --foreground: #e5e7eb; /* zinc-200 */
+  --surface-base: rgba(23, 37, 84, 0.88);
+  --surface-muted: rgba(30, 41, 82, 0.72);
+  --surface-glass: rgba(17, 24, 39, 0.65);
+  --border-soft: rgba(129, 140, 248, 0.28);
+  --border-strong: rgba(96, 165, 250, 0.45);
+  --text-muted: #cbd5f5;
+  --heading: #f1f5ff;
   color-scheme: dark;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(120% 120% at 90% 0%, color-mix(in oklab, var(--primary-300)_25%, transparent), transparent),
+    radial-gradient(100% 120% at 10% 100%, color-mix(in oklab, var(--primary-200)_18%, transparent), transparent),
+    var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+.dark body {
+  background:
+    radial-gradient(120% 120% at 100% 0%, color-mix(in oklab, var(--primary-500)_32%, transparent), transparent),
+    radial-gradient(120% 140% at 0% 100%, color-mix(in oklab, var(--primary-700)_26%, transparent), transparent),
+    var(--background);
 }
 
 /* Screen-reader only utility */
@@ -96,24 +128,27 @@ a {
 a:hover { color: var(--primary-800); }
 
 /* Typography defaults */
-h1 { font-size: 2.25rem; line-height: 1.2; letter-spacing: -0.02em; font-weight: 600; }
-h2 { font-size: 1.5rem; line-height: 1.3; letter-spacing: -0.01em; font-weight: 600; }
-h3 { font-size: 1.25rem; line-height: 1.35; font-weight: 600; }
-p  { color: #334155; }
-.dark p { color: #cbd5e1; }
+h1 { font-size: 2.25rem; line-height: 1.2; letter-spacing: -0.02em; font-weight: 700; color: var(--heading); }
+h2 { font-size: 1.875rem; line-height: 1.3; letter-spacing: -0.01em; font-weight: 600; color: var(--heading); }
+h3 { font-size: 1.5rem; line-height: 1.35; font-weight: 600; color: var(--heading); }
+h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 600; color: var(--heading); }
+h5 { font-size: 1.125rem; line-height: 1.5; font-weight: 600; color: var(--heading); }
+h6 { font-size: 1rem; line-height: 1.5; font-weight: 600; color: var(--heading); }
+p  { color: var(--text-muted); line-height: 1.6; transition: color 0.35s ease; }
+.dark p { color: var(--text-muted); }
 
 /* Focus styles */
-::where(button, a, input, select, textarea):focus-visible {
+:where(button, a, input, select, textarea):focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px var(--primary-100), 0 0 0 5px var(--primary-300);
 }
 
 /* Forms */
 input[type="text"], input[type="email"], input[type="search"], input[type="tel"], input[type="number"], select, textarea {
-  border: 1px solid var(--primary-200);
+  border: 1px solid var(--border-soft);
   border-radius: 0.5rem;
   padding: 0.5rem 0.75rem;
-  background: #fff;
+  background: var(--surface-base);
 }
 input:focus, select:focus, textarea:focus {
   outline: none;
@@ -128,9 +163,9 @@ thead th { background: var(--primary-50); color: var(--primary-800); text-align:
 tbody tr:nth-child(2n) { background: #fafafa; }
 
 .dark table { color: var(--foreground); }
-.dark th, .dark td { border-color: #27272a; }
-.dark thead th { background: #0f172a; color: #cbd5e1; }
-.dark tbody tr:nth-child(2n) { background: #111827; }
+.dark th, .dark td { border-color: rgba(79, 70, 229, 0.22); }
+.dark thead th { background: rgba(59, 46, 175, 0.25); color: #dbeafe; }
+.dark tbody tr:nth-child(2n) { background: rgba(30, 41, 82, 0.55); }
 
 /* Selection */
 ::selection { background: var(--primary-200); color: #0f172a; }
@@ -163,7 +198,7 @@ tbody tr:nth-child(2n) { background: #fafafa; }
 .skeleton {
   position: relative;
   overflow: hidden;
-  background: color-mix(in oklab, var(--foreground)_8%, transparent);
+  background: color-mix(in oklab, var(--foreground)_10%, transparent);
   border-radius: var(--radius-md);
 }
 .skeleton:after {

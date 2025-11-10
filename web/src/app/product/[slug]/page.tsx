@@ -1,15 +1,54 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Tabs } from "./Tabs";
 import { ProductGallery } from "@/components/ProductGallery";
 import { RelatedProducts } from "@/components/RelatedProducts";
 import { Reviews } from "@/components/Reviews";
 import { ProductActions } from "@/components/ProductActions";
+import { prisma } from "@/lib/prisma";
+import { site } from "@/config/site";
+
+async function getProduct(slug: string) {
+  const product = await prisma.product.findUnique({
+    where: { slug },
+    include: { images: true, documents: true, attributes: { include: { attribute: true } }, category: true },
+  });
+  return product;
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const product = await getProduct(params.slug);
+  if (!product) {
+    return {
+      title: "Товар не найден",
+    };
+  }
+
+  const price = product.price ? `${product.price.toLocaleString("ru-RU")} ₽` : undefined;
+  const description = product.description || `Купить ${product.name} по выгодной цене. ${site.name} - качественное отопительное оборудование.`;
+
+  return {
+    title: product.name,
+    description,
+    openGraph: {
+      title: product.name,
+      description,
+      type: "product",
+      images: product.images.length > 0 ? [{ url: product.images[0].url, alt: product.name }] : [],
+      ...(price && { priceAmount: String(product.price), priceCurrency: "RUB" }),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: product.name,
+      description,
+    },
+  };
+}
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL ?? ''}/api/products/${params.slug}`, { cache: 'no-store' });
-  if (!res.ok) return notFound();
-  const db = await res.json();
+  const db = await getProduct(params.slug);
+  if (!db) return notFound();
   const attributes = Object.fromEntries((db.attributes ?? []).map((av: any) => [av.attribute.name, av.valueString ?? av.valueNumber ?? av.valueBool ?? ""])) as Record<string, string>;
   const product = {
     slug: db.slug,
@@ -29,7 +68,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
           <h1 className="text-3xl font-semibold tracking-tight">{product.name}</h1>
           <ProductActions slug={product.slug} />
           {product.description && (
-            <p className="mt-2 max-w-2xl text-zinc-600 dark:text-zinc-300">{product.description}</p>
+            <p className="mt-2 max-w-2xl text-zinc-700 dark:text-zinc-300">{product.description}</p>
           )}
           <Tabs characteristics={product.attributes} documents={product.documents} />
         </div>
@@ -62,7 +101,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
           )}
         </aside>
       </div>
-      <RelatedProducts product={product} />
+      <RelatedProducts productSlug={product.slug} categorySlug={db.category.slug} />
       <Reviews />
     </main>
   );

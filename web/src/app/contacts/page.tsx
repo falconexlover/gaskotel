@@ -1,3 +1,6 @@
+import Image from "next/image";
+import { ContactForm } from "@/components/ContactForm";
+
 export default function ContactsPage() {
   return (
     <main className="space-y-8">
@@ -5,7 +8,7 @@ export default function ContactsPage() {
 
       <section className="grid gap-6 md:grid-cols-2">
         <div className="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60">
-          <h3 className="font-medium text-zinc-900 dark:text-zinc-100">Фирменный магазин ОАО "ЖМЗ"</h3>
+          <h3 className="font-medium text-zinc-900 dark:text-zinc-100">Фирменный магазин ОАО &laquo;ЖМЗ&raquo;</h3>
           <div className="mt-3 space-y-1 text-sm">
             <div className="text-zinc-700 dark:text-zinc-300">Адрес завода: г. Жуковский, ул. Заводская, д. 3</div>
             <div className="text-zinc-700 dark:text-zinc-300">Магазин: перекрёсток ул. Праволинейной и ул. Мичурина (вход с Праволинейной, параллельно ж/д)</div>
@@ -36,23 +39,41 @@ export default function ContactsPage() {
       </section>
 
       <section className="grid gap-6 md:grid-cols-2">
-        <figure className="rounded-xl border border-zinc-200 bg-white p-3 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60">
-          <img src="/contacts/walk-route.jpg" alt="Схема прохода от станции Ильинская" className="h-auto w-full rounded-lg" />
-          <figcaption className="mt-2 text-center text-sm text-zinc-600 dark:text-zinc-400">а) Проход от станции Ильинская</figcaption>
+        <figure className="overflow-hidden rounded-2xl border border-white/70 bg-white/85 shadow-lg ring-1 ring-black/5 backdrop-blur dark:border-zinc-800/60 dark:bg-zinc-900/70 dark:ring-zinc-900/70">
+          <div className="relative aspect-[4/3] w-full">
+            <Image
+              src="/contacts/walk-route.jpg"
+              alt="Схема прохода от станции Ильинская"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+              priority
+            />
+          </div>
+          <figcaption className="px-4 py-3 text-center text-sm text-zinc-700 dark:text-zinc-400">
+            а) Проход от станции Ильинская
+          </figcaption>
         </figure>
-        <figure className="rounded-xl border border-zinc-200 bg-white p-3 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60">
-          <img src="/contacts/car-bus-route.jpg" alt="Схема проезда на автомобиле или от автобусной остановки" className="h-auto w-full rounded-lg" />
-          <figcaption className="mt-2 text-center text-sm text-zinc-600 dark:text-zinc-400">б) Проезд на автомобиле / проход от автобусной остановки</figcaption>
+        <figure className="overflow-hidden rounded-2xl border border-white/70 bg-white/85 shadow-lg ring-1 ring-black/5 backdrop-blur dark:border-zinc-800/60 dark:bg-zinc-900/70 dark:ring-zinc-900/70">
+          <div className="relative aspect-[4/3] w-full">
+            <Image
+              src="/contacts/car-bus-route.jpg"
+              alt="Схема проезда на автомобиле или от автобусной остановки"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
+          <figcaption className="px-4 py-3 text-center text-sm text-zinc-700 dark:text-zinc-400">
+            б) Проезд на автомобиле / проход от автобусной остановки
+          </figcaption>
         </figure>
       </section>
 
-      <section className="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60">
+      <section className="rounded-2xl border border-white/70 bg-white/85 p-5 shadow-lg ring-1 ring-black/5 backdrop-blur dark:border-zinc-800/60 dark:bg-zinc-900/70 dark:ring-zinc-900/70">
         <h3 className="font-medium text-zinc-900 dark:text-zinc-100">Форма обратной связи</h3>
-        {/* Клиентский компонент с onSubmit */}
-        {require("@/components/ContactForm").ContactForm()}
+        <ContactForm />
       </section>
     </main>
   );
 }
-
-
